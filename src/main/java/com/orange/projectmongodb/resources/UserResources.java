@@ -1,7 +1,7 @@
 package com.orange.projectmongodb.resources;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orange.projectmongodb.domain.User;
+import com.orange.projectmongodb.dto.UserDTO;
 import com.orange.projectmongodb.services.UserService;
 
 @RestController
@@ -20,9 +21,12 @@ public class UserResources {
 	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
+	public ResponseEntity<List<UserDTO>> findAll() {
 		List<User> list = service.findAll();
-		list.addAll(Arrays.asList());
-		return ResponseEntity.ok().body(list);
+		List<UserDTO> listDto = list
+				.stream()
+				.map(elemento -> new UserDTO(elemento))
+				.collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 }
