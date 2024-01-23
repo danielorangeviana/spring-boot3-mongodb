@@ -30,7 +30,10 @@ public class UserResources {
 	@GetMapping
 	public ResponseEntity<List<UserDTO>> findAll() {
 		List<User> list = service.findAll();
-		List<UserDTO> listDto = list.stream().map(elemento -> new UserDTO(elemento)).collect(Collectors.toList());
+		List<UserDTO> listDto = list
+				.stream()
+				.map(elemento -> new UserDTO(elemento))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 
