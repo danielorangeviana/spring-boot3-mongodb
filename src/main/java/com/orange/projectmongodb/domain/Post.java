@@ -1,7 +1,7 @@
 package com.orange.projectmongodb.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
@@ -15,7 +15,7 @@ public class Post implements Serializable{
 	
 	@Id
 	private String id;
-	private Date date;
+	private LocalDate date;
 	private String title;
 	private String body;
 	
@@ -24,7 +24,7 @@ public class Post implements Serializable{
 	public Post() {
 	}
 	
-	public Post(String id, Date date, String title, String body, AuthorDTO author) {
+	public Post(String id, LocalDate date, String title, String body, AuthorDTO author) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -41,11 +41,11 @@ public class Post implements Serializable{
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
